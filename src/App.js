@@ -1,29 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import VistaTitulo from './componentes/VistaTitulo';
+import VistaProposito from './componentes/VistaProposito';
+import VistaMenu from './componentes/VistaMenu';
+// se suprime pero aun no se elimina para empezar de cero import './App.css';
 
-function App() {
+class App extends Component {
+
+  render(){
   return (
-    <div className="App">
+    <div className="App container">
       <header className="App-header">
-        <h1>
-          Todo esto se modificara al estilo de lo visto anteriormente.
-        </h1>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edita <code>src/App.js</code> y guarda para recargar.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Aprende React
-        </a>
+        <VistaTitulo></VistaTitulo>
+        <VistaMenu></VistaMenu>
+        <div className = "jumbotron">
+        <VistaProposito></VistaProposito>
+        </div>
       </header>
     </div>
   );
+  }
 }
 
 export default App;
