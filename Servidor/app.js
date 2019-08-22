@@ -2,7 +2,7 @@
 import express from 'express';
 import { listarBarrios } from './controladores/barrios';
 const app = express();
-
+//const listarBarrios = require('./controladores/barrios');
 app.get('/api/barrios',function(req,res){
     res.send(listarBarrios());
 });
