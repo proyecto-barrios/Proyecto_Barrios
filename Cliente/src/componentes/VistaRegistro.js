@@ -5,30 +5,30 @@ export default class VistaRegistro extends React.Component{
         return(
             <div class="container p-4">
                 <div class="col-md-8 mx-auto">
-                <form class="form-inline">
+                <form action=" ../Servidor/alta" method="POST" class="form-inline">
                     <div class="form-group col-5">
                         <label>Nombre:</label>
-                        <input class="form-control" placeholder="Ingresa tu nombre.." type="user" required></input>
+                        <input name="nombre" class="form-control" placeholder="Ingresa tu nombre.." type="text" required></input>
                     </div>
                     <div class="form-group col-5">
                         <label>Apellido:</label>
-                        <input class="form-control" placeholder="Ingresa tu apellido.." type="user" required></input>
+                        <input name="apellido" class="form-control" placeholder="Ingresa tu apellido.." type="text" required></input>
                     </div>
                     <div class="form-group col-5">
                         <label>Correo electrónico:</label>
-                        <input class="form-control" placeholder="Ingresa tu correo.." type="user" required></input>
+                        <input name="correo" class="form-control" placeholder="Ingresa tu correo.." type="email" required></input>
                     </div>
                     <div class="form-group col-5">
                         <label>Número telefónico:</label>
-                        <input class="form-control" placeholder="Ingresa tu numero.." type="user" required></input>
+                        <input class="form-control" placeholder="Ingresa tu numero.." type="text" required></input>
                     </div>
                     <div class="form-group col-5">
                         <label>Domicilio:</label>
-                        <input class="form-control" placeholder="Ingresa tu direccion.." type="user" required></input>
+                        <input name="domic" class="form-control" placeholder="Ingresa tu direccion.." type="text" required></input>
                     </div>
                     <div class="form-group col-5">
                         <label>Elige tu barrio:</label>
-                        <select class="form-control">
+                        <select name="barrio" class="form-control">
                             <option selected>...</option>
                             <option value="1">Versailles</option>
                             <option value="2">Monte Castro</option>
@@ -47,17 +47,17 @@ export default class VistaRegistro extends React.Component{
                     </div>
                     <div class="form-group col-5">
                         <label>Crear usuario:</label>
-                        <input class="form-control" placeholder="Ingrese usuario.." type="user" required></input>
+                        <input name="user" class="form-control" placeholder="Ingrese usuario.." type="text" required></input>
                     </div>
                     
                     <div class="form-group col-5">
                         <label>Crear contraseña: </label>
-                        <input class="form-control" placeholder="Ingrese contraseña.." type="password" required></input>
+                        <input name="pw" class="form-control" placeholder="Ingrese contraseña.." type="password" required></input>
                         
                     </div>
                     
                     <div class="form-group col-4 mx-auto">
-                    <button class="btn btn-primary btn-block" type="submit">Registrarse</button>
+                    <button name="submit" class="btn btn-primary btn-block" type="submit">Registrarse</button>
                     </div>
                     <p>* Una vez creada la cuenta usted recibirá un correo para validar la misma siguiendo el link recibido.</p>
                 </form>

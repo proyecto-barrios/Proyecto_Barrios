@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const conn = new Sequelize('ifts', 'root', '', {
+const conn = new Sequelize('vecinos', 'root', '', {
     host: 'localhost',
     dialect: 'mysql'
 });
@@ -8,17 +8,23 @@ conn.authenticate()
 .then(() => {
     console.log('La conexion se establecio correctamente.');
     //modeling table
-    const usuarios = conn.define('alumno', {
-        id: {type: Sequelize.SMALLINT, primaryKey: true},
+    const usuarios = conn.define('usuario', {
+        id_usuario: {type: Sequelize.SMALLINT, primaryKey: true},
         nombre: Sequelize.STRING,
-        edad: Sequelize.INTEGER,
+        apellido: Sequelize.INTEGER,
         correo: Sequelize.STRING,
-    }, { tableName: 'alumno'}) 
+        telefono: Sequelize.INTEGER,
+        direccion: Sequelize.STRING,
+        sexo: Sequelize.INTEGER,
+        usuario: Sequelize.STRING,
+        contraseña: Sequelize.STRING,
+        barrio: Sequelize.INTEGER,
+    }, { tableName: 'usuario'}) 
 
     // consultas de todos los usuarios
- usuarios.findAll({ attributes: ['id', 'nombre', 'edad', 'correo']})
+ usuarios.findAll({ attributes: ['id_usuario', 'nombre', 'apellido', 'correo', 'telefono', 'direccion', 'sexo', 'usuario', 'contraseña', 'barrio']})
  .then(users => {
-     users.foreach(user => console.log(user.get({plain:true})))
+     users.forEach(user => console.log(user.get({plain:true})))
  })
  .catch(err=> {
      console.log(err)
