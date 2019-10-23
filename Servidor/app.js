@@ -2,6 +2,7 @@
 import express from 'express';
 //const listarBarrios = require('./controladores/barrios');
 import { listarBarrios } from './controladores/barrios';
+import { guardarUsuario } from './controladores/usuario'
 //Inicializando paquetes
 
 const app = express();
@@ -21,13 +22,17 @@ app.use((req, res, next) => {
 
 
 // ROUTES
-app.get('/',(req,res) => {
-    res.render(path.join('C:/Users/Alumno/proyecto_final/Cliente/src/App.js'));
-});
-
+/*
 app.get('/api/barrios',function(req,res){
     res.send(listarBarrios());
 });
+*/
+app.post('/api/usuario',function(req,res) {
+
+    const respuestaGuardarUsuario = guardarUsuario(req);
+    res.send("usuario guardado");
+});
+
 
 // archivos estativos - carpeta al nav css imagenes fuentes iconos
 
