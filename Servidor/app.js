@@ -3,8 +3,7 @@ import express from 'express';
 //const listarBarrios = require('./controladores/barrios');
 import { listarBarrios } from './controladores/barrios';
 import { guardarUsuario } from './controladores/usuario'
-//Inicializando paquetes
-
+import bodyParser from 'body-parser';
 const app = express();
 const path = require('path');
 //cfg
@@ -20,6 +19,8 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(express.bodyParser());
+app.use(bodyParser.urlencoded({extended: false}));
 
 // ROUTES
 /*
@@ -33,10 +34,13 @@ app.post('/api/usuario',function(req,res) {
     res.send("usuario guardado");
 });
 
+/*app.get('/api/usuario', (req, res) => {
+    const mostrarUsuario = conn('SELECT * FROM usuario');
+    console.log(mostrarUsuario);
+    res.send('se muestran las lista en consola');
+})*/
 
-// archivos estativos - carpeta al nav css imagenes fuentes iconos
 
-// listening the server
 app.listen(4000, function(){
     console.log('la aplicacion empezo en el puerto 4000');
 });

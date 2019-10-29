@@ -28,7 +28,7 @@ export const posteos = conn.define('posteo', {
     imagen: Sequelize.BLOB('long'),
 }, { tableName: 'posteo', timestamps: false})
 
-
+/*
     // consultas de todos los usuarios
     Usuarios.findAll({ attributes: ['id_usuario', 'nombre', 'apellido', 'correo', 'telefono', 'direccion', 'sexo', 'usuario', 'contraseña', 'barrio']})
     .then(users => {
@@ -37,3 +37,4 @@ export const posteos = conn.define('posteo', {
     .catch(err=> {
         console.log(err)
     })
+*/
