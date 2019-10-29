@@ -1,9 +1,10 @@
 
 import { Usuarios } from '../models/tablas';
 
-export const guardarUsuario = (request) => {
-    const { nombre, apellido, correo, telefono, direccion, sexo, usuario, contraseña, barrio } =  request.body
+export const guardarUsuario = (req, res) => {
+    const { id_usuario, nombre, apellido, correo, telefono, direccion, sexo, usuario, contraseña, barrio } =  req.body
     Usuarios.create({
+            id_usuario,
             nombre,
             apellido,
             correo,

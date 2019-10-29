@@ -18,8 +18,7 @@ app.use((req, res, next) => {
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
-
-app.use(express.bodyParser());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 // ROUTES
