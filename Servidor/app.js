@@ -6,8 +6,6 @@ import { guardarUsuario } from './controladores/usuario'
 import bodyParser from 'body-parser';
 const app = express();
 const path = require('path');
-//cfg
-app.set('',);
 
 //MIDDLEWARE
 // Configurar cabeceras y cors
@@ -22,11 +20,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 // ROUTES
-/*
+
 app.get('/api/barrios',function(req,res){
     res.send(listarBarrios());
 });
-*/
+
 app.post('/api/usuario',function(req,res) {
 
     const respuestaGuardarUsuario = guardarUsuario(req);
