@@ -26,9 +26,15 @@ app.get('/api/barrios',function(req,res){
 });
 
 app.post('/api/usuario',function(req,res) {
+    try {
+        const respuestaGuardarUsuario = guardarUsuario(req);
+        //res.send(200, { ok: true });
+        res.status(200).send({ ok:true });
+    }
+    catch (err) {
+        res.send(400, { ok: false, err });
+    }
 
-    const respuestaGuardarUsuario = guardarUsuario(req);
-    res.send("usuario guardado");
 });
 
 /*app.get('/api/usuario', (req, res) => {

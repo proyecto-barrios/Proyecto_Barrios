@@ -22,8 +22,6 @@ export default class VistaLogueo extends React.Component{
                         <input class="form-check-input" type="checkbox"></input>
                         <label class="form-check-label">Recordar</label>
                     </div>
-                    <a href="#">Es nuevo aqui? Registrese</a><br/>
-                    <a href="#">Olvido su contraseña ?</a>
                     <button class="btn btn-primary btn-block" type="submit"
                      //onClick={this.enviar}
                      >Enviar</button>
