@@ -34,7 +34,6 @@ app.post('/api/usuario',function(req,res) {
     catch (err) {
         res.send(400, { ok: false, err });
     }
-
 });
 
 /*app.get('/api/usuario', (req, res) => {

@@ -8,10 +8,10 @@ export default class VistaRegistro extends React.Component{
         correo: '',
         telefono: '',
         direccion: '',
-        barrio: '',
         sexo: '',
         usuario: '',
-        contraseña: '',
+        clave: '',
+        barrio: '',
         error: false
 
     }
@@ -20,17 +20,21 @@ export default class VistaRegistro extends React.Component{
             ...this.state,
             [field]: value
         })
+        console.log(this.state);
     }
 
     submitForm() {
         const body = this.state
         fetch(`${config.api}/api/usuario`, {
             method: 'POST',
-            body,
+            // faltaba agregar stringifi y headers
+            body: JSON.stringify(body),
+            headers: {"Content-Type": "application/json"}
         })
         .then(res => {
             if (res.ok) {
-                this.props.history.push('/Logueo');
+                window.location.replace("/Logueo");
+                //no funciona por el import ?? -> this.props.history.push('/Logueo');
             } else {
                 this.setState({
                     ...this.state,
@@ -53,7 +57,7 @@ export default class VistaRegistro extends React.Component{
             <div class="container p-4">
                 <div class="col-md-8 mx-auto">
 
-                <form action="" method="POST">
+                <form action="/" method="POST">
 
                     {error && <p>Ups! Algo ha salido mal intenta nuevamente</p>}
 
@@ -101,8 +105,8 @@ export default class VistaRegistro extends React.Component{
                     </div>
                     
                     <div class="form-group col-5">
-                        <label>Crear contraseña: </label>
-                        <input onChange={e => this.saveField('contraseña', e.target.value)} name="contraseña" class="form-control" placeholder="Ingrese contraseña.." type="password" required></input>
+                        <label>Crear clave: </label>
+                        <input onChange={e => this.saveField('clave', e.target.value)} name="clave" class="form-control" placeholder="Ingrese clave.." type="password" required></input>
                         
                     </div>
                     

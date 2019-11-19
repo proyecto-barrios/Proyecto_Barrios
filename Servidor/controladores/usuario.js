@@ -2,7 +2,7 @@
 import { Usuarios } from '../models/tablas';
 
 export const guardarUsuario = (req, res) => {
-    const { nombre, apellido, correo, telefono, direccion, sexo, usuario, contraseña, barrio } =  req.body
+    const { nombre, apellido, correo, telefono, direccion, sexo, usuario, clave, barrio } =  req.body
     Usuarios.create({
             nombre,
             apellido,
@@ -11,7 +11,7 @@ export const guardarUsuario = (req, res) => {
             direccion,
             sexo,
             usuario,
-            contraseña,
+            clave,
             // barrio: parseInt(barrio),
             barrio,
     })

@@ -11,7 +11,7 @@ const Sequelize = require('sequelize');
     direccion: Sequelize.STRING,
     sexo: Sequelize.INTEGER,
     usuario: Sequelize.STRING,
-    contraseña: Sequelize.STRING,
+    clave: Sequelize.STRING,
     barrio: Sequelize.INTEGER,
 }, { tableName: 'usuario',  timestamps: false}) 
 
@@ -22,15 +22,16 @@ export const Barrios = conn.define('barrio', {
 }, { tableName: 'barrio', timestamps: false})
 
 // modeling table posteo
-export const posteos = conn.define('posteo', {
+export const Posteos = conn.define('posteo', {
     id_posteo: {type: Sequelize.SMALLINT, primaryKey:true},
     texto: Sequelize.TEXT,
     imagen: Sequelize.BLOB('long'),
+    fk_id_user: Sequelize.SMALLINT,
 }, { tableName: 'posteo', timestamps: false})
 
 /*
     // consultas de todos los usuarios
-    Usuarios.findAll({ attributes: ['id_usuario', 'nombre', 'apellido', 'correo', 'telefono', 'direccion', 'sexo', 'usuario', 'contraseña', 'barrio']})
+    Usuarios.findAll({ attributes: ['id_usuario', 'nombre', 'apellido', 'correo', 'telefono', 'direccion', 'sexo', 'usuario', 'clave', 'barrio']})
     .then(users => {
         users.forEach(user => console.log(user.get({plain:true})))
     })
@@ -38,3 +39,12 @@ export const posteos = conn.define('posteo', {
         console.log(err)
     })
 */
+
+// consultas de posteos
+Posteos.findAll({ attributes: ['id_posteo', 'texto', 'imagen', 'fk_id_user']})
+.then(users => {
+    users.forEach(user => console.log(user.get({plain:true})))
+})
+.catch(err=> {
+    console.log(err)
+})

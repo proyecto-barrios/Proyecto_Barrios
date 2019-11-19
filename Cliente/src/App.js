@@ -24,7 +24,7 @@ class App extends Component {
                         <ul class="navbar-nav">
                             <li><Link exact className="nav-link" to='/' ><i class="fas fa-home icon"></i> Inicio</Link></li>
                             <li><Link className="nav-link" to='/Logueo'><i class="fas fa-user icon"></i> Iniciar Sesion</Link></li>
-                            <li><Link className="nav-link" to='/Registro'><i class="fas fa-address-book icon"></i> Registros</Link></li>
+                            <li><Link className="nav-link" to='/Registro'><i class="fas fa-address-book icon"></i> Registro</Link></li>
                             <li><Link className="nav-link" to='/Invitado'><i class="fas fa-user-secret icon"></i> Invitado</Link></li>
                             <li><Link className="nav-link" to='/Contacto'><i class="fas fa-envelope icon"></i> Contactenos</Link></li>
                         </ul>
