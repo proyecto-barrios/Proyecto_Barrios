@@ -2,6 +2,7 @@
 import express from 'express';
 //const listarBarrios = require('./controladores/barrios');
 import { listarBarrios } from './controladores/barrios';
+import { listarPosteos } from './controladores/Posteos';
 import { guardarUsuario } from './controladores/usuario'
 import bodyParser from 'body-parser';
 const app = express();
@@ -23,6 +24,14 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 app.get('/api/barrios',function(req,res){
     res.send(listarBarrios());
+});
+
+app.get('/api/posteos',function(req,res){
+    
+    listarPosteos()
+        .then(posteos => {
+            res.send(posteos)
+        })
 });
 
 app.post('/api/usuario',function(req,res) {

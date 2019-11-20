@@ -1,5 +1,4 @@
 import React from 'react';
-
 export default class VistaInvitado extends React.Component{
     render(){
         return(
@@ -21,7 +20,6 @@ export default class VistaInvitado extends React.Component{
                     <button class="btn btn-primary btn-block" type="submit">Buscar </button>
                     </div>
                 </form>
-                
                 </div>
             </div>
         );
