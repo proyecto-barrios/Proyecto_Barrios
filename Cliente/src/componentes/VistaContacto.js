@@ -1,10 +1,38 @@
 import React from 'react';
 
 export default class VistaContacto extends React.Component{
+
+    state = {
+        posteos: []
+    }
+
+    componentDidMount() {
+        fetch('http://localhost:4000/api/posteos/')
+            .then(res => res.json())
+            .then(posteos => this.setState({ posteos }))
+    }
+
+    getImageMimeType(type) {
+        switch(type) {
+            case 'jpg' :
+                    return 'image/jpg';
+            case 'jpeg' :
+                    return 'image/jpeg';
+        }
+    }
+
     render(){
+        const { posteos } = this.state;
+        // cambiar el dato en jpg para que luego agregue en case los distintos tipos de imagenes
+        // cambiar en getimagetype () el png y jpg para probar
+        // en invitado mostrar por id en parametro de el name y que muestre las img de ese barrio
         return(
             <div class="container p-8">
                 <div class="col-md-8 mx-auto">
+                    {posteos.map(posteo => <div>
+                        <p>{posteo.texto}</p>
+                        <img src={'data:'+this.getImageMimeType('png')+'};charset=utf-8;base64, ' + posteo.imagen} /> 
+                    </div>)}
                 <form>
                     <div class="form-group col-5">
                         <label>Nombre:</label>

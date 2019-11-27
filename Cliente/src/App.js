@@ -40,6 +40,7 @@ class App extends Component {
       <Route path='/Registro' component={VistaRegistro}></Route>
       <Route path='/Invitado' component={VistaInvitado}></Route>
       <Route path='/Contacto' component={VistaContacto}></Route>
+      
     </Switch>
     </Router>
   );
