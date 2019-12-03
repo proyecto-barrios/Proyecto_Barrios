@@ -30,8 +30,10 @@ export default class VistaContacto extends React.Component{
             <div class="container p-8">
                 <div class="col-md-8 mx-auto">
                     {posteos.map(posteo => <div>
+
+                        <img src={'data:'+this.getImageMimeType('png')+'};charset=utf-8;base64, ' + posteo.imagen} alt=""/> 
                         <p>{posteo.texto}</p>
-                        <img src={'data:'+this.getImageMimeType('png')+'};charset=utf-8;base64, ' + posteo.imagen} /> 
+                        <mark>by - Usuario {posteo.fk_id_user}</mark>
                     </div>)}
                 <form>
                     <div class="form-group col-5">

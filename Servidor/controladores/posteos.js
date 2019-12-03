@@ -19,3 +19,12 @@ export const listarPosteos = () => {
             return p;
         });
 };
+
+export const guardarPosteo = (req, res) =>{
+    const { texto, imagen, fk_id_user } = req.body;
+    Posteos.create({
+        texto,
+        imagen,
+        fk_id_user,
+    })
+}

@@ -2,7 +2,7 @@
 import express from 'express';
 //const listarBarrios = require('./controladores/barrios');
 import { listarBarrios } from './controladores/barrios';
-import { listarPosteos } from './controladores/Posteos';
+import { listarPosteos, guardarPosteo } from './controladores/posteos';
 import { guardarUsuario } from './controladores/usuario'
 import bodyParser from 'body-parser';
 const app = express();
@@ -33,6 +33,18 @@ app.get('/api/posteos',function(req,res){
             res.send(posteos)
         })
 });
+
+// guardar todos los posts
+app.post('api/posteos', function(req, res) {
+    try{
+        const respguardarPosteo = guardarPosteo(req);
+        res.status(200).send({ok: true});
+    }
+    catch(err){
+        res.send(400, {ok: false, err});
+    }
+})
+
 
 app.post('/api/usuario',function(req,res) {
     try {
