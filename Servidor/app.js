@@ -35,7 +35,7 @@ app.get('/api/posteos',function(req,res){
 });
 
 // guardar todos los posts
-app.post('api/posteos', function(req, res) {
+app.post('/api/posteos', function(req, res) {
     try{
         const respguardarPosteo = guardarPosteo(req);
         res.status(200).send({ok: true});

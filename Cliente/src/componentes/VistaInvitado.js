@@ -23,14 +23,14 @@ export default class VistaInvitado extends React.Component{
 
     enviarForm(){
         const body = this.state
-        fetch(`${config.api}/api/usuario`, {
+        fetch(`${config.api}/api/posteos`, {
             method: 'POST',
             body: JSON.stringify(body),
             headers: {"Content-Type": "application/json"}
         })
         .then(res =>{
             if (res.ok){
-                window.location.replace("/Invitado");
+                //window.location.replace("/Invitado");
             }
             else{
                 this.setState({
@@ -44,7 +44,8 @@ export default class VistaInvitado extends React.Component{
                 ...this.state,
                 error: true
             })
-        })
+        });
+        return false;
     }
 
     componentDidMount() {
@@ -126,7 +127,7 @@ export default class VistaInvitado extends React.Component{
                                    <input onChange={e=> this.guardarCampo('fk_id_user', e.target.value)} type="text" name="fk_id_user" class="form-control" placeholder="usuario"></input>
                                 </div>
                                 <div class="form-group">
-                                   <button onClick={e => this.enviarForm()} type="submit" name="submitI" class="btn btn-success btn-block">Postear</button>
+                                   <button onClick={e => this.enviarForm()} type="button" name="submitI" class="btn btn-success btn-block">Postear</button>
                                  </div>
                             </form>
                         </div>
