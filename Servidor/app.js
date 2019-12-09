@@ -3,10 +3,15 @@ import express from 'express';
 //const listarBarrios = require('./controladores/barrios');
 import { listarBarrios } from './controladores/barrios';
 import { listarPosteos, guardarPosteo } from './controladores/posteos';
-import { guardarUsuario } from './controladores/usuario'
+import { guardarUsuario } from './controladores/usuario';
+import multer from 'multer';
 import bodyParser from 'body-parser';
 const app = express();
 const path = require('path');
+
+const storage = multer.memoryStorage()
+const upload = multer({storage: storage});
+
 
 //MIDDLEWARE
 // Configurar cabeceras y cors
@@ -17,8 +22,8 @@ app.use((req, res, next) => {
     res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
     next();
 });
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json({limit: "3mb"}));
+app.use(bodyParser.urlencoded({limit: "3mb", extended: false, parameterLimit: 3000}));
 
 // ROUTES
 
@@ -35,7 +40,7 @@ app.get('/api/posteos',function(req,res){
 });
 
 // guardar todos los posts
-app.post('/api/posteos', function(req, res) {
+app.post('/api/posteos', upload.single("imagen"), function(req, res) {
     try{
         const respguardarPosteo = guardarPosteo(req);
         res.status(200).send({ok: true});
@@ -53,7 +58,7 @@ app.post('/api/usuario',function(req,res) {
         res.status(200).send({ ok:true });
     }
     catch (err) {
-        res.send(400, { ok: false, err });
+        res.status(400).send({ ok: false, err });
     }
 });
 

@@ -21,10 +21,10 @@ export const listarPosteos = () => {
 };
 
 export const guardarPosteo = (req, res) =>{
-    const { texto, imagen, fk_id_user } = req.body;
+   // const { texto, imagen, fk_id_user } = req.body;
     Posteos.create({
-        texto,
-        imagen,
-        fk_id_user,
+        texto: req.body.texto,
+        imagen: req.file.buffer,
+        fk_id_user: req.body.fk_id_user,
     })
 }

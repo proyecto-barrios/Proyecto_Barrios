@@ -1,40 +1,56 @@
 import React from 'react';
-
+import config from '../config';
 export default class VistaContacto extends React.Component{
 
     state = {
-        posteos: []
+        texto: '',
+        imagen: '',
+        fk_id_user: '',
+        error: false
     }
 
-    componentDidMount() {
-        fetch('http://localhost:4000/api/posteos/')
-            .then(res => res.json())
-            .then(posteos => this.setState({ posteos }))
+
+    guardarCampo(campo, valor){
+        this.setState({
+            ...this.state,
+            [campo]: valor
+        })
+        console.log(this.state);
     }
 
-    getImageMimeType(type) {
-        switch(type) {
-            case 'jpg' :
-                    return 'image/jpg';
-            case 'jpeg' :
-                    return 'image/jpeg';
-        }
+    enviarForm(){
+        const body = this.state
+        fetch(`${config.api}/api/posteos`, {
+            method: 'POST',
+            body:(body)
+        })
+        .then(res =>{
+            if (res.ok){
+                //window.location.replace("/Invitado");
+            }
+            else{
+                this.setState({
+                    ...this.state,
+                    error: true
+                })
+            }
+        })
+        .catch(err => {
+            this.setState({
+                ...this.state,
+                error: true
+            })
+        });
+        return false;
     }
 
     render(){
-        const { posteos } = this.state;
         // cambiar el dato en jpg para que luego agregue en case los distintos tipos de imagenes
         // cambiar en getimagetype () el png y jpg para probar
         // en invitado mostrar por id en parametro de el name y que muestre las img de ese barrio
         return(
             <div class="container p-8">
                 <div class="col-md-8 mx-auto">
-                    {posteos.map(posteo => <div>
-
-                        <img src={'data:'+this.getImageMimeType('png')+'};charset=utf-8;base64, ' + posteo.imagen} alt=""/> 
-                        <p>{posteo.texto}</p>
-                        <mark>by - Usuario {posteo.fk_id_user}</mark>
-                    </div>)}
                 <form>
                     <div class="form-group col-5">
                         <label>Nombre:</label>
@@ -74,6 +90,40 @@ export default class VistaContacto extends React.Component{
                 <p>*Telefono: 4639-6209</p>
                 <p>*Email: contacto@freecity.com.ar</p>
                 </div>
+
+
+
+
+                <div className= "row">
+                <div className ="col-md-4 offset-md-4">
+                    <div className="card">
+                        <div className="card-body">
+                            <form action="/" method="POST" encType="multipart/form-data">
+                                <div className="form-group">
+                                    <input onChange={e=> this.guardarCampo('texto', e.target.value)} type="text" name="texto" placeholder="Texto" className="form-control"></input>
+                                </div>
+                                
+                                <div className="input-group mb-3">
+                                <div className="custom-file">
+                                  <input onChange={e=> this.guardarCampo('imagen', e.target.value)} type="file" name="imagen" className="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"></input>
+                                  <label className="custom-file-label" for="inputGroupFile03">Elegir archivo</label>
+                               </div>
+                                </div>
+
+                                <div class="form-group">
+                                   <input onChange={e=> this.guardarCampo('fk_id_user', e.target.value)} type="text" name="fk_id_user" class="form-control" placeholder="usuario"></input>
+                                </div>
+                                <div class="form-group">
+                                   <button onClick={e => this.enviarForm()} type="button" name="submitI" class="btn btn-success btn-block">Postear</button>
+                                 </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+
+
             </div>
         );
     }
