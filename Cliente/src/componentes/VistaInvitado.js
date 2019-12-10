@@ -7,7 +7,6 @@ export default class VistaInvitado extends React.Component{
         posteos: []
     }
 
-
     componentDidMount() {
         fetch('http://localhost:4000/api/posteos/')
             .then(res => res.json())
@@ -22,7 +21,6 @@ export default class VistaInvitado extends React.Component{
                     return 'image/jpeg';
         }
     }
-
 
     render(){
 
@@ -59,6 +57,7 @@ export default class VistaInvitado extends React.Component{
                         <div className="card-body">    
                         <p>{posteo.texto}</p>
                         <mark>by - Usuario {posteo.fk_id_user}</mark>
+                        <p>{posteo.tiempo}</p>
                         </div>
                         </div>)
                         }                         

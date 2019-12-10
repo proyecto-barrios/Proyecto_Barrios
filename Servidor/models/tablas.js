@@ -27,7 +27,19 @@ export const Posteos = conn.define('posteo', {
     texto: Sequelize.TEXT,
     imagen: Sequelize.BLOB('long'),
     fk_id_user: Sequelize.SMALLINT,
+    tiempo: Sequelize.TIME,
 }, { tableName: 'posteo', timestamps: false})
+
+ //modeling table correo
+ export const Correos = conn.define('correo', {
+    id_correo: {type: Sequelize.SMALLINT, primaryKey: true},
+    nombre: Sequelize.STRING,
+    apellido: Sequelize.INTEGER,
+    correo: Sequelize.STRING,
+    telefono: Sequelize.INTEGER,
+    motivo: Sequelize.STRING,
+    mensaje: Sequelize.TEXT,
+}, { tableName: 'correo',  timestamps: false}) 
 
 /*
     // consultas de todos los usuarios
@@ -41,7 +53,7 @@ export const Posteos = conn.define('posteo', {
 */
 
 // consultas de posteos
-Posteos.findAll({ attributes: ['id_posteo', 'texto', 'imagen', 'fk_id_user']})
+Posteos.findAll({ attributes: ['id_posteo', 'texto', 'imagen', 'fk_id_user', 'tiempo']})
 .then(users => {
     users.forEach(user => console.log(user.get({plain:true})))
 })

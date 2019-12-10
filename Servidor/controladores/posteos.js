@@ -4,7 +4,7 @@ const b = require('based-blob');
 
 
 export const listarPosteos = () => {
-    return Posteos.findAll({ attributes: ['id_posteo', 'texto', 'imagen', 'fk_id_user']})
+    return Posteos.findAll({ attributes: ['id_posteo', 'texto', 'imagen', 'fk_id_user', 'tiempo']})
         .then(posteos => {
             const p = posteos.map(post => {
                 var buffer = new Buffer( post.imagen );
@@ -14,6 +14,7 @@ export const listarPosteos = () => {
                     texto: post.texto,
                     imagen: bufferBase64,
                     fk_id_user: post.fk_id_user,
+                    tiempo: post.tiempo,
                 };
             })
             return p;

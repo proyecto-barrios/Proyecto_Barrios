@@ -3,32 +3,34 @@ import config from '../config';
 export default class VistaContacto extends React.Component{
 
     state = {
-        texto: '',
-        imagen: '',
-        fk_id_user: '',
+        nombre: '',
+        apellido: '',
+        correo: '',
+        telefono: '',
+        motivo: '',
+        mensaje: '',
         error: false
     }
 
-
-    guardarCampo(campo, valor){
+    saveCampo(field, value){
         this.setState({
             ...this.state,
-            [campo]: valor
+            [field]: value
         })
         console.log(this.state);
     }
 
-    enviarForm(){
+    enviarForm() {
         const body = this.state
-        fetch(`${config.api}/api/posteos`, {
+        fetch(`${config.api}/api/correo`, {
             method: 'POST',
-            body:(body)
+            body: JSON.stringify(body),
+            headers: {"Content-Type": "application/json"}
         })
-        .then(res =>{
-            if (res.ok){
-                //window.location.replace("/Invitado");
-            }
-            else{
+        .then(res => {
+            if (res.ok) {
+                window.location.replace("/Contacto");
+            } else {
                 this.setState({
                     ...this.state,
                     error: true
@@ -40,8 +42,7 @@ export default class VistaContacto extends React.Component{
                 ...this.state,
                 error: true
             })
-        });
-        return false;
+        })
     }
 
     render(){
@@ -51,26 +52,26 @@ export default class VistaContacto extends React.Component{
         return(
             <div class="container p-8">
                 <div class="col-md-8 mx-auto">
-                <form>
+                <form method="POST">
                     <div class="form-group col-5">
                         <label>Nombre:</label>
-                        <input class="form-control" placeholder="Ingresa tu nombre.." type="user" required></input>
+                        <input onChange={e => this.saveCampo('nombre', e.target.value)} class="form-control" name="nombre" placeholder="Ingresa tu nombre.." type="text" required></input>
                     </div>
                     <div class="form-group col-5">
                         <label>Apellido:</label>
-                        <input class="form-control" placeholder="Ingresa tu apellido.." type="user" required></input>
+                        <input onChange={e => this.saveCampo('apellido', e.target.value)} class="form-control" name="apellido" placeholder="Ingresa tu apellido.." type="text" required></input>
                     </div>
                     <div class="form-group col-5">
                         <label>Correo electrónico:</label>
-                        <input class="form-control" placeholder="Ingresa tu correo.." type="user" required></input>
+                        <input onChange={e => this.saveCampo('correo', e.target.value)} class="form-control" name="correo" placeholder="Ingresa tu correo.." type="email" required></input>
                     </div>
                     <div class="form-group col-5">
                         <label>Número telefónico:</label>
-                        <input class="form-control" placeholder="Ingresa tu numero.." type="user" required></input>
+                        <input onChange={e => this.saveCampo('telefono', e.target.value)} class="form-control" name="telefono" placeholder="Ingresa tu numero.." type="text" required></input>
                     </div>
                     <div class="form-group col-5">
                         <label>Elige motivo:</label>
-                        <select class="form-control">
+                        <select onChange={e => this.saveCampo('motivo', e.target.value)} class="form-control" name="motivo">
                             <option selected>...</option>
                             <option value="1">Configuracion</option>
                             <option value="2">Clasificados</option>
@@ -80,49 +81,16 @@ export default class VistaContacto extends React.Component{
                     </div>
                         <div class="form-group">
                             <label>Escribe tu mensaje:</label>
-                            <textarea class="form-control" rows="3"></textarea>
+                            <textarea onChange={e => this.saveCampo('mensaje', e.target.value)} class="form-control" rows="3" name="mensaje" type="text"></textarea>
                         </div>
                     <div class="form-group col-5 mx-auto">
-                    <button class="btn btn-primary btn-block" type="submit">Enviar</button>
+                    <button onClick={e =>this.enviarForm()} class="btn btn-primary btn-block" name="enviar" type="submit">Enviar</button>
                     </div>
                 </form>
                 <p>*Direccion: Lascano 4424, CABA</p>
                 <p>*Telefono: 4639-6209</p>
                 <p>*Email: contacto@freecity.com.ar</p>
                 </div>
-
-
-
-
-                <div className= "row">
-                <div className ="col-md-4 offset-md-4">
-                    <div className="card">
-                        <div className="card-body">
-                            <form action="/" method="POST" encType="multipart/form-data">
-                                <div className="form-group">
-                                    <input onChange={e=> this.guardarCampo('texto', e.target.value)} type="text" name="texto" placeholder="Texto" className="form-control"></input>
-                                </div>
-                                
-                                <div className="input-group mb-3">
-                                <div className="custom-file">
-                                  <input onChange={e=> this.guardarCampo('imagen', e.target.value)} type="file" name="imagen" className="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03"></input>
-                                  <label className="custom-file-label" for="inputGroupFile03">Elegir archivo</label>
-                               </div>
-                                </div>
-
-                                <div class="form-group">
-                                   <input onChange={e=> this.guardarCampo('fk_id_user', e.target.value)} type="text" name="fk_id_user" class="form-control" placeholder="usuario"></input>
-                                </div>
-                                <div class="form-group">
-                                   <button onClick={e => this.enviarForm()} type="button" name="submitI" class="btn btn-success btn-block">Postear</button>
-                                 </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-              </div>
-
-
 
             </div>
         );

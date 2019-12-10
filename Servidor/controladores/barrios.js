@@ -1,4 +1,4 @@
-export const listarBarrios = () =>{
+/*export const listarBarrios = () =>{
     return [
         "liniers",
         "mataderos",
@@ -7,4 +7,4 @@ export const listarBarrios = () =>{
         "lugano",
         "versailles"
     ]
-}
+}*/

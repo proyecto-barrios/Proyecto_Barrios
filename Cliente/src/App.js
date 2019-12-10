@@ -5,6 +5,7 @@ import VistaLogueo from './componentes/VistaLogueo';
 import VistaRegistro from './componentes/VistaRegistro';
 import VistaInvitado from './componentes/VistaInvitado';
 import VistaContacto from './componentes/VistaContacto';
+import VistaUpload from './componentes/VistaUpload';
 // se suprime pero aun no se elimina para empezar de cero import './App.css';
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
                             <li><Link className="nav-link" to='/Registro'><i class="fas fa-address-book icon"></i> Registro</Link></li>
                             <li><Link className="nav-link" to='/Invitado'><i class="fas fa-user-secret icon"></i> Invitado</Link></li>
                             <li><Link className="nav-link" to='/Contacto'><i class="fas fa-envelope icon"></i> Contactenos</Link></li>
+                            <li><Link className="nav-link" to='/SubirImagen'><i class="fas fa-image icon"></i> Subir imagen</Link></li>
                         </ul>
                     </div>
 
@@ -40,7 +42,7 @@ class App extends Component {
       <Route path='/Registro' component={VistaRegistro}></Route>
       <Route path='/Invitado' component={VistaInvitado}></Route>
       <Route path='/Contacto' component={VistaContacto}></Route>
-      
+      <Route path='/SubirImagen' component={VistaUpload}></Route>
     </Switch>
     </Router>
   );

@@ -4,8 +4,10 @@ import express from 'express';
 import { listarBarrios } from './controladores/barrios';
 import { listarPosteos, guardarPosteo } from './controladores/posteos';
 import { guardarUsuario } from './controladores/usuario';
+import { guardarCorreo } from './controladores/correos';
 import multer from 'multer';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 const app = express();
 const path = require('path');
 
@@ -15,6 +17,7 @@ const upload = multer({storage: storage});
 
 //MIDDLEWARE
 // Configurar cabeceras y cors
+app.use(cors())
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
@@ -55,6 +58,16 @@ app.post('/api/usuario',function(req,res) {
     try {
         const respuestaGuardarUsuario = guardarUsuario(req);
         //res.send(200, { ok: true });
+        res.status(200).send({ ok:true });
+    }
+    catch (err) {
+        res.status(400).send({ ok: false, err });
+    }
+});
+
+app.post('/api/correo',function(req,res) {
+    try {
+        const respguardarCorreo = guardarCorreo(req);
         res.status(200).send({ ok:true });
     }
     catch (err) {

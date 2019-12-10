@@ -57,7 +57,7 @@ export default class VistaRegistro extends React.Component{
             <div class="container p-4">
                 <div class="col-md-8 mx-auto">
 
-                <form action="/" method="POST">
+                <form method="POST">
 
                     {error && <p>Ups! Algo ha salido mal intenta nuevamente</p>}
 
