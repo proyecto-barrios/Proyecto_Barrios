@@ -13,4 +13,7 @@ conn.authenticate()
     console.log('No se conecto la base de datos.');
 });
 
+//conn.sync({ force: true });
+// DE ALGUNA FORMA SEQUELIZE TE CREA LAS TABLAS CON TERMINACION "S"
+
  export default conn;

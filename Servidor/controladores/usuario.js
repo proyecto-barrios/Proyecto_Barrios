@@ -1,4 +1,4 @@
-
+import passport from 'passport';
 import { Usuarios } from '../models/tablas';
 
 export const guardarUsuario = (req, res) => {
@@ -15,4 +15,20 @@ export const guardarUsuario = (req, res) => {
             // barrio: parseInt(barrio),
             barrio,
     })
+}
+
+export const listarUsuarios = () => {
+    return Usuarios.findAll()
+}
+
+
+export const logueado = (req, res) =>{
+    const {usuario, clave} = req.body
+    //console.log('test', usuario, clave);
+    req.session.usuario = usuario;
+   /* return passport.authenticate('local',{
+        failureRedirect: '/asd',
+        successRedirect: '/',
+        failureFlash: true
+    });*/
 }

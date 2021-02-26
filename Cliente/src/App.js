@@ -15,20 +15,20 @@ class App extends Component {
     <Router>
     <div className="App">
       <header className="App-header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <div class="container">
-                    <h2 class="navbar-brand">FreeCity</h2>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+        <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+                <div className="container">
+                    <h2 className="navbar-brand">FreeCity</h2>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
                     </button>
-                    <div class="collapse navbar-collapse justify-content-md-center" id="navbarNav">
-                        <ul class="navbar-nav">
-                            <li><Link exact className="nav-link" to='/' ><i class="fas fa-home icon"></i> Inicio</Link></li>
-                            <li><Link className="nav-link" to='/Logueo'><i class="fas fa-user icon"></i> Iniciar Sesion</Link></li>
-                            <li><Link className="nav-link" to='/Registro'><i class="fas fa-address-book icon"></i> Registro</Link></li>
-                            <li><Link className="nav-link" to='/Invitado'><i class="fas fa-user-secret icon"></i> Invitado</Link></li>
-                            <li><Link className="nav-link" to='/Contacto'><i class="fas fa-envelope icon"></i> Contactenos</Link></li>
-                            <li><Link className="nav-link" to='/SubirImagen'><i class="fas fa-image icon"></i> Subir imagen</Link></li>
+                    <div className="collapse navbar-collapse justify-content-md-center" id="navbarNav">
+                        <ul className="navbar-nav">
+                            <li><Link exact className="nav-link" to='/' ><i className="fas fa-home icon"></i> Inicio</Link></li>
+                            <li><Link className="nav-link" to='/Logueo'><i className="fas fa-user icon"></i> Iniciar Sesion</Link></li>
+                            <li><Link className="nav-link" to='/Registro'><i className="fas fa-address-book icon"></i> Registro</Link></li>
+                            <li><Link className="nav-link" to='/Invitado'><i className="fas fa-user-secret icon"></i> Invitado</Link></li>
+                            <li><Link className="nav-link" to='/Contacto'><i className="fas fa-envelope icon"></i> Contactenos</Link></li>
+                            <li><Link className="nav-link" to='/SubirImagen'><i className="fas fa-image icon"></i> Subir imagen</Link></li>
                         </ul>
                     </div>
 

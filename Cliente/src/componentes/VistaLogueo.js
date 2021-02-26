@@ -1,4 +1,6 @@
 import React from 'react';
+import config from '../config';
+import axios from 'axios';
 
 export default class VistaLogueo extends React.Component{
     
@@ -15,7 +17,31 @@ export default class VistaLogueo extends React.Component{
     }
 
     onClickForm(){
+        //axios.post('http://localhost:4000/api/logueo')
         // enviar datos a port 4000 y hacer la comparacion con BD
+        const body = this.state
+        fetch(`${config.api}/api/logueo`, {
+            method: 'POST',
+            body: JSON.stringify(body),
+            headers: {"Content-Type": "application/json"}
+        })
+        .then(res => {
+            if (res.ok) {
+                //window.location.replace("/Contacto");
+                console.log('se envio la info')
+            } else {
+                this.setState({
+                    ...this.state,
+                    error: true
+                })
+            }
+        })
+        .catch(err => {
+            this.setState({
+                ...this.state,
+                error: true
+            })
+        })
     }
 
     render(){

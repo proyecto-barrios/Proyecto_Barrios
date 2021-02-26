@@ -9,7 +9,14 @@ export default class VistaUpload extends React.Component{
     state = {
         texto: '',
         SelectImagen: null,
-        fk_id_user: ''
+        usuarios: []
+    }
+
+    async componentDidMount() {
+        const resp = await axios.get('http://localhost:4000/api/usuario');
+        this.setState({
+            usuarios: resp.data.map(usuario => usuario  )
+        })
     }
 
     guardarCampo = campo => event => {
@@ -79,9 +86,22 @@ export default class VistaUpload extends React.Component{
                            </div>
                             </div>
 
-                            <div class="form-group">
-                               <input onChange={this.guardarCampo('fk_id_user')} type="text" name="fk_id_user" class="form-control" placeholder="usuario"></input>
+                           
+
+                            <div class="form-group col-5">
+                            <label>Usuario:</label>
+                            <select onChange={e => this.guardarCampo('fk_id_user', e.target.value)} name="fk_id_user" class="form-control">
+                                {
+                                    this.state.usuarios.map(usuario => 
+                                        <option key={usuario} value={usuario.id_usuario}>
+                                            {usuario.nombre}
+                                        </option>)
+                                }
+                            </select>
                             </div>
+
+
+
                             <div class="form-group">
                                <button onClick={this.enviarForm} type="button" name="submitI" class="btn btn-success btn-block">Postear</button>
                              </div>

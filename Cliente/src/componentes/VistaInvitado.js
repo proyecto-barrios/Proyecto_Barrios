@@ -1,17 +1,27 @@
 import React from 'react';
+import {format} from 'timeago.js';
+import axios from 'axios'
+
 
 export default class VistaInvitado extends React.Component{
 
 
     state = {
-        posteos: []
+        posteos: [],
+        barrios: []
     }
 
-    componentDidMount() {
-        fetch('http://localhost:4000/api/posteos/')
+    async componentDidMount() {
+        const resp = await axios.get('http://localhost:4000/api/barrios');
+        this.setState({
+            barrios: resp.data.map(barrio => barrio.nombre_barrio)
+        })
+
+        await fetch('http://localhost:4000/api/posteos/')
             .then(res => res.json())
             .then(posteos => this.setState({ posteos }))
     }
+
 
     getImageMimeType(type) {
         switch(type) {
@@ -27,22 +37,23 @@ export default class VistaInvitado extends React.Component{
         const { posteos } = this.state;
 
         return(
-            <div class="container p-8">
-                <div class="col-md-8 mx-auto">
-                <form class="form-inline">
-                    <div class="form-group">
+            <div className="container p-8">
+                <div className="col-md-8 mx-auto">
+                <form className="form-inline">
+                    <div className="form-group">
                         <label>Elige el barrio: </label>
-                        <select class="form-control">
-                            <option selected>...</option>
-                            <option value="1">Versailles</option>
-                            <option value="2">Monte Castro</option>
-                            <option value="3">Villa Luro</option>
-                            <option value="4">Liniers</option>
+                        <select className="form-control">
+                        {
+                            this.state.barrios.map(barrio => 
+                                <option key={barrio} value={barrio}>
+                                    {barrio}
+                                </option>)
+                        }
                         </select>
                     </div>
                         
-                    <div class="form-group col-5 mx-auto">
-                    <button class="btn btn-primary btn-block" type="submit">Buscar </button>
+                    <div className="form-group col-5 mx-auto">
+                    <button className="btn btn-primary btn-block" type="submit">Buscar </button>
                     </div>
                 </form>
                 </div>
@@ -57,7 +68,7 @@ export default class VistaInvitado extends React.Component{
                         <div className="card-body">    
                         <p>{posteo.texto}</p>
                         <mark>by - Usuario {posteo.fk_id_user}</mark>
-                        <p>{posteo.tiempo}</p>
+                        <p>{format(posteo.tiempo)}</p>
                         </div>
                         </div>)
                         }                         

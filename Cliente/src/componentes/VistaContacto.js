@@ -17,7 +17,7 @@ export default class VistaContacto extends React.Component{
             ...this.state,
             [field]: value
         })
-        console.log(this.state);
+        //console.log(this.state);
     }
 
     enviarForm() {
@@ -46,6 +46,7 @@ export default class VistaContacto extends React.Component{
     }
 
     render(){
+        const { error } = this.state;
         // cambiar el dato en jpg para que luego agregue en case los distintos tipos de imagenes
         // cambiar en getimagetype () el png y jpg para probar
         // en invitado mostrar por id en parametro de el name y que muestre las img de ese barrio
@@ -53,6 +54,7 @@ export default class VistaContacto extends React.Component{
             <div class="container p-8">
                 <div class="col-md-8 mx-auto">
                 <form method="POST">
+                {error && <p>Ups! Algo ha salido mal intenta nuevamente</p>}
                     <div class="form-group col-5">
                         <label>Nombre:</label>
                         <input onChange={e => this.saveCampo('nombre', e.target.value)} class="form-control" name="nombre" placeholder="Ingresa tu nombre.." type="text" required></input>

@@ -1,5 +1,6 @@
 import React from 'react';
-import config from '../config'
+import config from '../config';
+import axios from 'axios';
 
 export default class VistaRegistro extends React.Component{
     state = {
@@ -11,10 +12,18 @@ export default class VistaRegistro extends React.Component{
         sexo: '',
         usuario: '',
         clave: '',
-        barrio: '',
+        barrios: [],
         error: false
 
     }
+
+    async componentDidMount() {
+        const resp = await axios.get('http://localhost:4000/api/barrios');
+        this.setState({
+            barrios: resp.data.map(barrio => barrio)
+        })
+    }
+
     saveField(field, value) {
         this.setState({
             ...this.state,
@@ -33,6 +42,7 @@ export default class VistaRegistro extends React.Component{
         })
         .then(res => {
             if (res.ok) {
+                //this.setState({redirectTo: '/Logueo'});
                 window.location.replace("/Logueo");
                 //no funciona por el import ?? -> this.props.history.push('/Logueo');
             } else {
@@ -84,10 +94,12 @@ export default class VistaRegistro extends React.Component{
                     <div class="form-group col-5">
                         <label>Elige tu barrio:</label>
                         <select onChange={e => this.saveField('barrio', e.target.value)} name="barrio" class="form-control">
-                            <option selected>...</option>
-                            <option value="30">Monte Castro</option>
-                            <option value="28">Villa Luro</option>
-
+                            {
+                                this.state.barrios.map(barrio => 
+                                    <option key={barrio} value={barrio.id_barrio}>
+                                        {barrio.nombre_barrio}
+                                    </option>)
+                            }
                         </select>
                     </div>
                     <label>Seleccione el sexo:</label><br/>
